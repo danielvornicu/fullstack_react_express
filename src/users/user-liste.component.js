@@ -11,8 +11,9 @@ import "../styles.css";
 import { AppHeader } from "../shared/AppHeader.component";
 import { constructHeader, isAdmin, updateAppSettings } from "../util";
 import { useHistory } from "react-router-dom";
+import {API_BASE_URL} from "../shared/constants";
 
-const USER_API_BASE_URL = "http://localhost:5000/api/users";
+const USER_API_BASE_URL = API_BASE_URL + "/users";
 
 export const UserListeComponent = () => {
   const [users, setUsers] = useState([]);

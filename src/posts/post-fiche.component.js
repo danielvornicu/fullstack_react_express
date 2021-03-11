@@ -4,8 +4,9 @@ import "../styles.css";
 import { AppHeader } from "../shared/AppHeader.component";
 import { constructHeader, updateAppSettings } from "../util";
 import { useParams, useHistory } from "react-router-dom";
+import {API_BASE_URL} from "../shared/constants";
 
-const POST_API_BASE_URL = "http://localhost:5000/api/posts";
+const POST_API_BASE_URL = API_BASE_URL + "/posts";
 
 export const PostFicheComponent = () => {
   const [text, setText] = useState("");
