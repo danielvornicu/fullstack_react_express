@@ -5,8 +5,11 @@ import { useHistory } from "react-router-dom";
 import { updateAppSettings } from "../util";
 //let base64 = require("base-64");
 import base64 from "base-64"; //ES2015 (ES6)
+import {API_BASE_URL} from "../shared/constants";
+
 let headers = new Headers();
-const url = "http://localhost:5000/api/users/login";
+
+const url = API_BASE_URL + "/users/login";
 
 export const Login = () => {
 
