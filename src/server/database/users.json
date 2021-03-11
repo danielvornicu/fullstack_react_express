@@ -1,0 +1,16 @@
+[
+  {
+    "username": "user",
+    "key": "$2y$10$m9jWbaK29thfeCVvXscCYeIrpkyGDEot6rojEobAIiJxo0qLO4LXa",
+    "firstName": "Daniel",
+    "lastName": "Vornicu",
+    "role": "member"
+  },
+  {
+    "username": "admin",
+    "key": "$2y$10$C.lS51HqvwSGgLNeYr/jIusQKobuSq1VvN11yxBvxCDq2ohfeyz1q",
+    "firstName": "Daniel",
+    "lastName": "Vornicu",
+    "role": "admin"
+  }
+]

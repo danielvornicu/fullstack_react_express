@@ -1,0 +1,16 @@
+[
+    {
+        "_id" : ObjectId("5fc518fca31c911ef0a85be4"),
+        "text" : "Hello World",
+        "createdAt" : ISODate("2020-11-30T16:08:28.143Z"),
+        "updatedAt" : "",
+        "user_id" : ObjectId("5ffdde8ff0565a26ec55dcd8")
+    },
+    {
+        "_id" : ObjectId("5fc5195ea31c911ef0a85be5"),
+        "text" : "Ths is the post 2",
+        "createdAt" : ISODate("2020-11-30T16:10:06.058Z"),
+        "updatedAt" : "",
+        "user_id" : ObjectId("5ffdde8ff0565a26ec55dcd8")
+    }
+  ]

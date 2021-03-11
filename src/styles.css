@@ -1,0 +1,53 @@
+body {
+  color: rgba(0, 0, 0, 0.87);
+  margin: 0;
+  font-size: 0.875rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  background-color: rgba(248, 246, 246, 0.973);
+}
+
+.App {
+  text-align: center;
+}
+
+.Content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 20vh;
+  margin-top: 12vh;
+}
+
+.Post {
+  padding: 1em;
+  margin: 1em;
+  color: gray;
+  /*border: 2px solid gray; */
+}
+
+.User {
+  /*border: 2px solid gray;*/
+  padding: 1em;
+  margin: 1em;
+  margin-bottom: 2em;
+  /* border-radius: 20px; */
+}
+
+.AddPost {
+  display: flex;
+  align-items: center;
+  min-height: 20vh;
+  padding: 7em;
+}
+
+.AddUser {
+  display: flex;
+  align-items: center;
+  min-height: 20vh;
+  padding: 7em;
+}
+
+
