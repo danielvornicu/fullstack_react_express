@@ -6,6 +6,10 @@ const jwt = require("jsonwebtoken");
 const mongodb = require('mongodb');
 const Constants = require("../constants");
 
+//MONGO_URL="mongodb+srv://admin:abcd1234@cluster0.0mdxx.mongodb.net/PostsDB"
+//Local: "mongodb://localhost:27017/PostsDB"
+//MongoDB Altas: "mongodb+srv://admin:abcd1234@cluster0.0mdxx.mongodb.net/PostsDB"
+
 //the "sub" (subject) claim identifies the principal that is the subject of the JWT
 var getUsernameFromToken = (exports.getUsernameFromToken = (token) => jwt.decode(token)["sub"]);
 
@@ -66,7 +70,7 @@ exports.generateToken = async function (prevToken, userName) {
   const options = {
     algorithm: process.env.ALGORITHM, 
     expiresIn: process.env.EXPIRY,
-    issuer: process.env.ISSUER,
+    issuer: proexpiresIncess.env.ISSUER,
     subject: userName || user.username,
     audience:
       user.role === "admin"
