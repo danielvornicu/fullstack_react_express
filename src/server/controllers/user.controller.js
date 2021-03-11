@@ -18,6 +18,7 @@ class UserController {
         const username = credentials[0];
         const password = credentials[1];
         //get the user object
+        console.log(username);
         const user = await getUserByUsername(username);
         if (user && !isEmptyObject(user)){
             //compare the given password against the hashed pasword(key)
