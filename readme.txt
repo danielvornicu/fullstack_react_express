@@ -74,9 +74,7 @@ Run React App:
 http://localhost:3000/
 
 Github:
-git add src/*
-git add public/*
-git add readme.txt
+git add .
 git commit -m "first commit"
 Connect it to github ad create a new repository: fullstack_react_express
 git remote add origin https://github.com/danielvornicu/fullstack_react_express.git
