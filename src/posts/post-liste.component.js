@@ -103,7 +103,7 @@ const Post = ({id, text, createdAt, user_id }) => {
   const history = useHistory();
 
   const refreshPage = () => {
-    window.location.reload(false);
+    window.location.reload(true);
   }
 
   const onDelete = () => {
@@ -124,6 +124,7 @@ const Post = ({id, text, createdAt, user_id }) => {
       if (json) {
           updateAppSettings(json.access_token);
           refreshPage();
+          //history.push("/posts");
       }
 
     } catch(err){

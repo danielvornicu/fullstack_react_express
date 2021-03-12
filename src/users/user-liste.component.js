@@ -97,7 +97,7 @@ const User = ({id, firstName, lastName, userName, role }) => {
   };
 
   const refreshPage = () => {
-    window.location.reload(false);
+    window.location.reload(true);
   }
 
   const onDelete = () => {
