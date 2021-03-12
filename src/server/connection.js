@@ -5,8 +5,7 @@ async function main() {
      * Connection URI. Update <username>, <password>, and <your-cluster-url> to reflect your cluster.
      * See https://docs.mongodb.com/ecosystem/drivers/node/ for more details
      */
-    //const uri = "mongodb+srv://admin:abcd1234@cluster0.0mdxx.mongodb.net/test?retryWrites=true&w=majority";
-    //const uri = "mongodb://localhost:27017/PostsDB";
+    
     const uri = process.env.MONGO_URL;
 
     /**
