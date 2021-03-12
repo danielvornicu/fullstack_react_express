@@ -44,10 +44,45 @@ export const UserListeComponent = () => {
     }
   };
 
+  //delete a user by id (HTTP GET)
+  async function deleteById(id){
+    try{
+      let url = USER_API_BASE_URL + "/" + id + "/delete";
+
+      let res = await fetch(url, { headers: constructHeader() });
+      let json;
+      if (res.status === 401){
+        redirectToLoginPage();
+      } else {
+        json = await res.json();
+      }
+      if (json) {
+          updateAppSettings(json.access_token);
+          //refreshPage();
+          setUsers([...json.users]);
+      }
+
+    } catch(err){
+      console.log("Error deleting user ", err.message);
+    }
+  }
+
   useEffect(() => {
     fetchUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const onEdit = (id) =>{
+    history.push("/users/"+ id + "/edit");
+  };
+
+  const onDelete = (id) => {
+    deleteById(id);
+  };
+
+  const refreshPage = () => {
+    window.location.reload(false);
+  }
 
   return (
     <div className="Content">
@@ -77,6 +112,8 @@ export const UserListeComponent = () => {
                   firstName={user.firstName}
                   lastName={user.lastName}
                   role={user.role}
+                  onEdit = {(id) => onEdit(id)}
+                  onDelete = {(id) => onDelete(id)}
                 />
               );
             })}
@@ -87,48 +124,7 @@ export const UserListeComponent = () => {
   );
 };
 
-const User = ({id, firstName, lastName, userName, role }) => {
-
-  const history = useHistory();
-
-  const redirectToLoginPage = () => {
-    localStorage.clear();
-    history.push("/login");
-  };
-
-  const refreshPage = () => {
-    window.location.reload(true);
-  }
-
-  const onDelete = () => {
-    deleteById(id);
-  };
-
-  function onEdit(){
-    history.push("/users/"+ id + "/edit");
-  };
-
-  //delete a user by id (HTTP GET)
-  async function deleteById(id){
-    try{
-      let url = USER_API_BASE_URL + "/" + id + "/delete";
-
-      let res = await fetch(url, { headers: constructHeader() });
-      let json;
-      if (res.status === 401){
-        redirectToLoginPage();
-      } else {
-        json = await res.json();
-      }
-      if (json) {
-          updateAppSettings(json.access_token);
-          refreshPage();
-      }
-
-    } catch(err){
-      console.log("Error deleting user ", err.message);
-    }
-  }
+const User = ({id, firstName, lastName, userName, role, onEdit, onDelete }) => {
 
   return (
     <Card elevation={3} className="User">
@@ -153,10 +149,10 @@ const User = ({id, firstName, lastName, userName, role }) => {
       </CardContent>
 
       <CardActions disableSpacing style={{ width: '100%', justifyContent: 'flex-end' }} >
-        <IconButton aria-label="Edit Post"  onClick={onEdit} color="primary">
+        <IconButton aria-label="Edit Post"  onClick={() => onEdit(id)} color="primary">
           <EditIcon fontSize="small"/>
         </IconButton>
-        <IconButton aria-label="Delete Post"  onClick={onDelete} color="secondary" edge="end">
+        <IconButton aria-label="Delete Post"  onClick={() => onDelete(id)} color="secondary" edge="end">
           <DeleteIcon fontSize="small"/>
         </IconButton>
       </CardActions>

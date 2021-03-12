@@ -45,6 +45,24 @@ export const PostListeComponent = () => {
     }
   };
 
+  //delete a post by id (HTTP GET)
+  async function deleteById(id){
+    try{
+      let url = POST_API_BASE_URL + "/" + id + "/delete";
+
+      let res = await fetch(url, { headers: constructHeader() });
+      let json = await res.json();
+      if (json) {
+          updateAppSettings(json.access_token);
+          //refreshPage();
+          setPosts([...json.posts]);
+      }
+
+    } catch(err){
+      console.log("Error deleting post ", err.message);
+    }
+  }
+
   function formatDate(dateStr) {
     var date = new Date(dateStr);
 
@@ -65,6 +83,18 @@ export const PostListeComponent = () => {
     fetchPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const onEdit = (id) => {
+    history.push("/posts/"+ id + "/edit");
+  };
+
+  const onDelete = (id) => {
+    deleteById(id);
+  };
+
+  const refreshPage = () => {
+    window.location.reload(false);
+  }
 
   return (
     <div className="Content">
@@ -87,6 +117,9 @@ export const PostListeComponent = () => {
                   text={post.text}
                   createdAt = {formatDate(post.createdAt)}
                   user_id = {post.user_id}
+                  onEdit = {(id) => onEdit(id)}
+                  onDelete = {(id) => onDelete(id)}
+                  refreshPage = {refreshPage}
                 />
               );
             })}
@@ -98,39 +131,7 @@ export const PostListeComponent = () => {
   );
 };
 
-const Post = ({id, text, createdAt, user_id }) => {
-
-  const history = useHistory();
-
-  const refreshPage = () => {
-    window.location.reload(true);
-  }
-
-  const onDelete = () => {
-    deleteById(id);
-  };
-
-  function onEdit(){
-    history.push("/posts/"+ id + "/edit");
-  };
-
-  //delete a post by id (HTTP GET)
-  async function deleteById(id){
-    try{
-      let url = POST_API_BASE_URL + "/" + id + "/delete";
-
-      let res = await fetch(url, { headers: constructHeader() });
-      let json = await res.json();
-      if (json) {
-          updateAppSettings(json.access_token);
-          refreshPage();
-          //history.push("/posts");
-      }
-
-    } catch(err){
-      console.log("Error deleting post ", err.message);
-    }
-  }
+const Post = ({id, text, createdAt, user_id, onEdit, onDelete}) => {
 
   return (
     <Card elevation={3} className="Post">
@@ -144,10 +145,10 @@ const Post = ({id, text, createdAt, user_id }) => {
       </CardContent>
 
       <CardActions disableSpacing style={{ width: '100%', justifyContent: 'flex-end' }}>
-        <IconButton aria-label="Edit Post" onClick={onEdit} color="primary">
+        <IconButton aria-label="Edit Post" onClick={() => onEdit(id)} color="primary">
           <EditIcon fontSize="small"/>
         </IconButton>
-        <IconButton aria-label="Delete Post" onClick={onDelete} color="secondary" edge="end">
+        <IconButton aria-label="Delete Post" onClick={() =>onDelete(id)} color="secondary" edge="end">
           <DeleteIcon fontSize="small"/>
         </IconButton>
       </CardActions>
