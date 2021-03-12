@@ -80,6 +80,47 @@ Connect it to github ad create a new repository: fullstack_react_express
 git remote add origin https://github.com/danielvornicu/fullstack_react_express.git
 git push -u origin master
 
+Deploy 'fullstack_react_express'(frontend + backend) application on Heroku:
+Build the app:
+>npm run build  - build and create build folder
+>git add build/static/css -f - force to add to github the generated files
+>git add build/static/js -f 
+Commit to github
+Change start command
+In package.json, change the “start” command to node server.js so:
+   "start": "react-scripts start"  becomes:  "start": "node src/server/server.js"
+I prefer to create a Procfile with: web: node src/server/server.js and leave "start": "react-scripts start" 
+Procfile
+web: src/server/server.js
+
+Add Node and NPM engines that Heroku will use to run your application. 
+Preferably, it should be same version you have on your machine.
+So, run node -v and npm -v to get the correct version and include it in your package.json file like so:
+"engines": {
+    "node": "12.13.0",
+    "npm": "6.12.0"
+  }
+In Heroku App-Settings->Config Vars add the variables((copy from src/server/variables.env)
+SECRET, ALGORITHM, ISSUER, EXPIRY - for JWT
+MONGO_URL, MONGO_DBNAME - for mongoDB database(shared in MongoDB Atlas)
+
+Deploy 'fullstack_react_express'(front end static files only) application on Surge:
+1.install Surge globally:
+>npm install --global surge
+2.Build your project using npm run build:
+>npm run build
+3.Now, run surge from within any directory, to publish that directory onto the web.
+>cd build
+Set a certificate if necessary:
+>set NODE_EXTRA_CA_CERTS=d:\python\examples\heroku\ANFH-CA.cer
+5. Execute surge command:
+>surge enter email and password and domain: fullstack-express-react.surge.sh
+Go to generated domain: http://fullstack-express-react.surge.sh
+
+
+  
+
+
 
 
 
