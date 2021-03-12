@@ -12,7 +12,9 @@ import {
 import { useHistory } from "react-router-dom";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { constructHeader, isMember } from "../util";
-const url = "http://localhost:5000/api/users/logout";
+import {API_BASE_URL} from "../shared/constants";
+
+const url = API_BASE_URL + "/users/logout";
 
 export const AppHeader = ({ tabValue }) => {
   const tabs = ["/posts", "/posts/new", "/users", "/users/new"];
