@@ -66,7 +66,7 @@ exports.generateToken = async function (prevToken, userName) {
   const options = {
     algorithm: process.env.ALGORITHM, 
     expiresIn: process.env.EXPIRY,
-    issuer: proexpiresIncess.env.ISSUER,
+    issuer: process.env.ISSUER,
     subject: userName || user.username,
     audience:
       user.role === "admin"
