@@ -44,7 +44,7 @@ class PostController {
             const post = await PostService.findById(req.params.id);
             if (post) {
                 //after we get the posts list we generate another token from previous one
-                token = await generateToken(token, null);
+                //token = await generateToken(token, null);
                 if (token) {
                     res.status(200)
                         .send({ post: post, 

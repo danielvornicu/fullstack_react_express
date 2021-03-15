@@ -43,19 +43,16 @@ export const UserFicheComponent = () => {
   };
 
   useEffect(() => {
-    fetchUser(id);
+    if (id){
+      fetchUser(id);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   const fetchUser = async function (id) {
     try{
 
-      let url;
-      if(typeof(id) === 'undefined'){
-        url = USER_API_BASE_URL + "/new";
-      } else {
-        url = USER_API_BASE_URL + "/" + id;
-      }
+      let url = USER_API_BASE_URL + "/" + id;
 
       let res = await fetch(url, { headers: constructHeader() });
       let json;
@@ -72,6 +69,7 @@ export const UserFicheComponent = () => {
           setPassword(json.user.password);
           setFirstName(json.user.firstName);
           setLastName(json.user.lastName);
+          setAdminProfile(json.user.role === 'admin' ? true : false);
       }
 
     } catch(err){

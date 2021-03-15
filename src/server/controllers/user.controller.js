@@ -18,9 +18,7 @@ class UserController {
         const username = credentials[0];
         const password = credentials[1];
         //get the user object
-        console.log(username+":"+password);
         const user = await getUserByUsername(username);
-        console.log(user);
         if (user && !isEmptyObject(user)){
             //compare the given password against the hashed pasword(key)
             const passwordOk = await isPasswordCorrect(password, user.key);
@@ -95,7 +93,7 @@ class UserController {
                 const user = await UserService.findById(req.params.id);
                 if (user) {
                     //after we get the users list we generate another token from previous one
-                    token = await generateToken(token, null);
+                    //token = await generateToken(token, null);
                     if (token) {
                         res.status(200)
                            .send({ user: user, 

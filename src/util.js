@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode"; //ES2015 (ES6)
 export const updateAppSettings = (token) => {
   //localStorage.clear();
   if (token) {
-    console.log(token);
+    //console.log(token);
     localStorage.setItem("displayName", jwt_decode(token)["sub"]);
     localStorage.setItem("access_token", token);
   }

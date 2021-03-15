@@ -27,18 +27,15 @@ export const PostFicheComponent = () => {
 
 
   useEffect(() => {
-    fetchPost(id);
+    if (id){
+      fetchPost(id);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   const fetchPost = async function (id) {
     try{
-      let url;
-      if(typeof(id) === 'undefined'){
-        url = POST_API_BASE_URL + "/new";
-      } else {
-        url = POST_API_BASE_URL + "/" + id;
-      }
+      let url = POST_API_BASE_URL + "/" + id;
 
       let res = await fetch(url, { headers: constructHeader() });
       let json;
